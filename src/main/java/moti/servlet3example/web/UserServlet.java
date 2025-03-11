@@ -18,8 +18,9 @@ public class UserServlet extends HtmlWriterServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userStore = Application.getInstance().getUserService();
-        List<String> users = new ArrayList<>(userStore.getUsers());
+        // Using 'var' for local variable type inference (Java 10+ feature)
+        var userStore = Application.getInstance().getUserService();
+        var users = new ArrayList<>(userStore.getUsers());
         Collections.sort(users);
         HtmlWriter html = createHtmlWriter(req, resp);
         html.header()

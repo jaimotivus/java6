@@ -15,13 +15,15 @@ public class SysPropsServlet extends HtmlWriterServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map appConfig = new TreeMap();
-        Config config = Application.getInstance().getConfig();
+        // Using var for local variable type inference (Java 10+ feature)
+        var appConfig = new TreeMap<String, String>();
+        var config = Application.getInstance().getConfig();
         for (String key : config.getKeys()) {
             appConfig.put(key, config.getValue(key));
         }
         
-        Map sysProps = new TreeMap(System.getProperties());
+        // Using var for local variable type inference
+        var sysProps = new TreeMap<Object, Object>(System.getProperties());
         
         HtmlWriter html = createHtmlWriter(req, resp);
         html.header()

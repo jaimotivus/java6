@@ -1,4 +1,3 @@
-
 package moti.servlet3example.web;
 
 import java.io.IOException;
@@ -31,7 +30,8 @@ public class LoginRequiredFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (request instanceof HttpServletRequest) {
-            HttpServletRequest req = (HttpServletRequest) request;
+            // Using var for local variable type inference (Java 10+)
+            var req = (HttpServletRequest) request;
             System.out.printf("Checking LoginSession token for uri=%s", req.getRequestURI());
             LoginSession loginSession = LoginServlet.getOptionalLoginSession(req);
             if (loginSession == null) {

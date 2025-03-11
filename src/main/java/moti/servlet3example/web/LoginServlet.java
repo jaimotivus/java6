@@ -16,7 +16,8 @@ public class LoginServlet  extends HtmlWriterServlet {
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HtmlWriter html = createHtmlWriter(req, resp); 
+        // Using var for local variable type inference (Java 10+)
+        var html = createHtmlWriter(req, resp); 
         String message;
         
         // Check to see if we are doing logout or not.
@@ -66,7 +67,8 @@ public class LoginServlet  extends HtmlWriterServlet {
     }    
        
     protected LoginSession createLoginSession(HttpServletRequest req, String username) {
-        LoginSession result = new LoginSession(username);
+        // Using var for local variable type inference (Java 10+)
+        var result = new LoginSession(username);
         req.getSession(true).setAttribute(LoginSession.LOGIN_SESSION_KEY, result);
         return result;
     }
@@ -82,7 +84,8 @@ public class LoginServlet  extends HtmlWriterServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         
-        UserService userService = Application.getInstance().getUserService();
+        // Using var for local variable type inference (Java 10+)
+        var userService = Application.getInstance().getUserService();
         if (userService.validate(username, password)) {
             System.out.printf("User %s logged in successfully.", username);
             // Create Session Data here after successful authenticated.
@@ -107,10 +110,11 @@ public class LoginServlet  extends HtmlWriterServlet {
     
     /** Return LoginSession if found in HttpSession scope, else return NULL value. */
     public static LoginSession getOptionalLoginSession(HttpServletRequest req) {
-        LoginSession result = null;
+        // Updated to use pattern matching for instanceof (Java 16+)
         HttpSession session = req.getSession(false);
-        if (session != null)
-            result = (LoginSession)session.getAttribute(LoginSession.LOGIN_SESSION_KEY);
-        return result;
+        if (session != null && session.getAttribute(LoginSession.LOGIN_SESSION_KEY) instanceof LoginSession loginSession) {
+            return loginSession;
+        }
+        return null;
     }
 }

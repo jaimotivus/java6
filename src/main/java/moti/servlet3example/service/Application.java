@@ -1,4 +1,3 @@
-
 package moti.servlet3example.service;
 
 public class Application implements Service {
@@ -18,9 +17,14 @@ public class Application implements Service {
     
     @Override
     public void init() {
-        config = new Config("config.properties");
+        // Using var for local variable type inference (Java 10+)
+        // This is an optional change for Java 21 upgrade
+        var config = new Config("config.properties");
+        this.config = config;
         
-        userService = new UserService();
+        // Using var for local variable type inference (Java 10+)
+        var userService = new UserService();
+        this.userService = userService;
         userService.init();
     }
     

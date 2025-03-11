@@ -29,7 +29,8 @@ public class ThreadInfoServlet  extends HtmlWriterServlet {
         //     list("ContextClassLoader Tree", "<pre>" + getClassLoaderTreeInfo("") + "</pre>")
         // );
         
-        HtmlWriter html = createHtmlWriter(req, resp); 
+        // Using var for local variable (optional Java SE 21 feature)
+        var html = createHtmlWriter(req, resp); 
         html.header()
             .h(1, "Thread Execution Information")
             // .table(rows)
@@ -37,8 +38,9 @@ public class ThreadInfoServlet  extends HtmlWriterServlet {
     }
 
     public static String getClassLoaderTreeInfo(String indent) {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        StringBuilder result = new StringBuilder();
+        // Using var for local variable (optional Java SE 21 feature)
+        var classLoader = Thread.currentThread().getContextClassLoader();
+        var result = new StringBuilder();
         getClassLoaderTreeInfo(classLoader, result, indent);
         return result.toString();
     }
@@ -47,7 +49,8 @@ public class ThreadInfoServlet  extends HtmlWriterServlet {
         sb.append(indent);
         sb.append(String.format("ClassLoader: %s", classLoader));
         sb.append("\n");
-        ClassLoader parent = classLoader.getParent();
+        // Using var for local variable (optional Java SE 21 feature)
+        var parent = classLoader.getParent();
         if (parent != null) {
             getClassLoaderTreeInfo(parent, sb, indent + "  ");
         }

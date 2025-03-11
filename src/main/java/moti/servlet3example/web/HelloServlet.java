@@ -14,7 +14,8 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = resp.getWriter();
+        // Using var for local variable type inference (Java 10+ feature)
+        var writer = resp.getWriter();
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         writer.println("<body>");

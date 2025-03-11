@@ -1,4 +1,3 @@
-
 package moti.servlet3example.web;
 
 import java.io.PrintWriter;
@@ -89,7 +88,8 @@ public class HtmlWriter {
     }
 
     public HtmlWriter table(Map<?, ?> map) {
-        List<List<? extends Object>> rows = new ArrayList<>();
+        // Using var for local variable type inference (Java 10+)
+        var rows = new ArrayList<List<? extends Object>>();
         // rows.add(Utils.list("NAME", "VALUE"));
          for (Map.Entry<?, ?> entry : map.entrySet()) {
         //     rows.add(Utils.list(entry.getKey(), entry.getValue()));
@@ -106,13 +106,15 @@ public class HtmlWriter {
             id = "" + System.identityHashCode(rows);
         int indexCount = 0;
         int numOfCols = 1;
-        Iterator<List<?>> itr = rows.iterator();
+        // Using var for local variable type inference (Java 10+)
+        var itr = rows.iterator();
         writer.println("<table id='" + id + "' class='dataTable'>");
         
         if (isFirstRowHeader && itr.hasNext()) {
             writer.print("<tr class='tableHeader'>");
                             
-            List<?> row = itr.next();
+            // Using var for local variable type inference (Java 10+)
+            var row = itr.next();
             numOfCols = row.size();
             
             if (showRowIndex) {
@@ -130,7 +132,8 @@ public class HtmlWriter {
         } else {
             while (itr.hasNext()) {
                 indexCount++;
-                String evenOddCss = (indexCount % 2 == 0) ? "even" : "odd";
+                // Using var for local variable type inference (Java 10+)
+                var evenOddCss = (indexCount % 2 == 0) ? "even" : "odd";
                 writer.print("<tr class='" + evenOddCss + " row" + indexCount + "'>");
 
                 // Index Column
@@ -138,7 +141,8 @@ public class HtmlWriter {
                     writer.print("<td>" + indexCount + "</td>");
                 }
                 
-                List<?> row = itr.next();
+                // Using var for local variable type inference (Java 10+)
+                var row = itr.next();
                 for (Object col : row) {
                     // writer.print("<td>" + Utils.toString(col) + "</td>");
                 }
