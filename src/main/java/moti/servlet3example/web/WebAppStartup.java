@@ -14,8 +14,8 @@ public class WebAppStartup implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
-
-        Application app = Application.getInstance();
+        // Using var for local variable type inference (Java 10+)
+        var app = Application.getInstance();
         app.init();
                 
         // Since we are providing singleton access to application, storing
@@ -30,14 +30,16 @@ public class WebAppStartup implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent event) {
-        Application app = Application.getInstance();
+        // Using var for local variable type inference (Java 10+)
+        var app = Application.getInstance();
         app.destroy();
   
     }
 
     private void logAppInfo(ServletContextEvent event) {
-        ServletContext sc = event.getServletContext();
-        StringBuilder sb = new StringBuilder("Application Information:\n");
+        // Using var for local variable type inference (Java 10+)
+        var sc = event.getServletContext();
+        var sb = new StringBuilder("Application Information:\n");
         sb.append(String.format("\tServerInfo: %s", sc.getServerInfo()));
         sb.append(String.format("\n\tServlet Version: %s.%s", sc.getMajorVersion(), sc.getMinorVersion()));
         sb.append(String.format("\n\tServletContext Instance: %s", sc));

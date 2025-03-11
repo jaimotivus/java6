@@ -31,9 +31,9 @@ public class IndexServlet extends HtmlWriterServlet {
     }
     
     private String getMessage(HttpServletRequest req, HtmlWriter html) {
-        // Construct a server message based on user logged in with session data or not.
-        String message = "";
-        LoginSession loginSession = LoginServlet.getOptionalLoginSession(req);
+        // Using var for local variable declarations (Java 10+ feature)
+        var message = "";
+        var loginSession = LoginServlet.getOptionalLoginSession(req);
         if (loginSession != null) {
             message = "Welcome " + loginSession.getUsername() + 
                     "! You have been logged in since " + loginSession.getDateCreated();

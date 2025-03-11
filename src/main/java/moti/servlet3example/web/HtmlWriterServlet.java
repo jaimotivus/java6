@@ -26,7 +26,8 @@ public abstract class HtmlWriterServlet extends HttpServlet {
     
     protected String header(HtmlWriter html) {
         String contextPath = getServletContext().getContextPath();
-        StringBuilder sb = new StringBuilder();
+        // Using var for local variable type inference (Java 10+)
+        var sb = new StringBuilder();
         sb.append("<!DOCTYPE html>");
         sb.append("<html>");
         sb.append("<header>");
@@ -42,7 +43,8 @@ public abstract class HtmlWriterServlet extends HttpServlet {
     }
 
     protected String footer(HtmlWriter html) {
-        StringBuilder sb = new StringBuilder();
+        // Using var for local variable type inference (Java 10+)
+        var sb = new StringBuilder();
         sb.append("<body>");
         sb.append("</html>");
         return sb.toString();

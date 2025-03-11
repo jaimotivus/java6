@@ -5,6 +5,7 @@ package moti.servlet3example.service;
  * 
  * @author zedeng
  *
+ * // No changes needed for Java 21 upgrade - this interface is already compatible
  */
 public interface Service {
 	void init();

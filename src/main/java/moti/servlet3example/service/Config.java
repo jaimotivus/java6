@@ -15,12 +15,8 @@ public class Config {
     private Properties config = new Properties();
 
     public Config(String fileName) {
-        FileUtils.loadOptionalFile(fileName, getClass().getPackage().getName(), new FileUtils.ReaderAction() {
-            @Override
-            public void onReader(Reader reader) throws Exception {
-                config.load(reader);
-            }
-        });
+        // Replaced anonymous inner class with lambda expression for Java SE 21 compatibility
+        FileUtils.loadOptionalFile(fileName, getClass().getPackage().getName(), reader -> config.load(reader));
     }
     
     public Set<String> getKeys() {

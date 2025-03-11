@@ -1,4 +1,3 @@
-
 package moti.servlet3example.service;
 
 import java.io.Reader;
@@ -21,12 +20,9 @@ public class UserService implements Service {
      */
     @Override
     public void init() {        
-        FileUtils.loadOptionalFile("servlet3example-users.properties", getClass().getPackage().getName(), new FileUtils.ReaderAction() {
-            @Override
-            public void onReader(Reader reader) throws Exception {
-                usersProps.load(reader);
-            }
-        });
+        // Replaced anonymous inner class with lambda expression for Java SE 21 compatibility
+        FileUtils.loadOptionalFile("servlet3example-users.properties", getClass().getPackage().getName(), 
+            reader -> usersProps.load(reader));
     }
     
     @Override

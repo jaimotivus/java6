@@ -16,8 +16,9 @@ public class FormServlet extends HtmlWriterServlet {
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HtmlWriter html = createHtmlWriter(req, resp);    
-        String message = getMessage(req);
+        // Using var for local variable type inference (Java 10 feature)
+        var html = createHtmlWriter(req, resp);    
+        var message = getMessage(req);
         
         html.header()
             .h(1, "User Data Form")
@@ -42,7 +43,8 @@ public class FormServlet extends HtmlWriterServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Processing form.");
-        Form form = new Form();
+        // Using var for local variable type inference (Java 10 feature)
+        var form = new Form();
         form.setUsername(req.getParameter("username"));
         form.setPassword(req.getParameter("password"));
         form.setNotes(req.getParameter("notes"));
@@ -55,7 +57,8 @@ public class FormServlet extends HtmlWriterServlet {
     }
     
     private String getMessage(HttpServletRequest req) {
-        String message = (String)req.getAttribute("message");
+        // Using var for local variable type inference (Java 10 feature)
+        var message = (String)req.getAttribute("message");
         if (message ==  null) {
             message = "";
         }
